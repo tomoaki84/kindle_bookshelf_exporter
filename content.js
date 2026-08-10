@@ -15,9 +15,12 @@
                 "itemStatusList": [
                     "Active"
                 ],
+                // "Sample" is a distinct Kindle ownership type.  It was omitted
+                // here, so downloaded samples never appeared in the export.
                 "originTypes": [
                     "Purchase",
-                    "Pottermore"
+                    "Pottermore",
+                    "Sample"
                 ],
                 "showSharedContent": true,
                 "fetchCriteria": {
@@ -132,13 +135,15 @@
                     item["acquiredDate"],
                     item["readStatus"],
                     item["asin"],
+                    item["originType"] ?? "",
+                    item["originType"] === "Sample" ? "true" : "false",
                 ];
     
                 return row
                     .map(v => v ?? "")
                     .map(v => '"' + v.replaceAll('"', '""') + '"')
             });
-        rows.unshift(['"title"', '"authors"', '"date"', '"status"', '"asin"']);
+        rows.unshift(['"title"', '"authors"', '"date"', '"status"', '"asin"', '"originType"', '"sample"']);
     
         const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
         const csv = rows.map(r => r.join(",")).join("\n");
@@ -158,7 +163,9 @@
                 "acquiredTime": item["acquiredTime"],
                 "readStatus": item["readStatus"],
                 "asin": item["asin"],
-                "productImage": item["productImage"]
+                "productImage": item["productImage"],
+                "originType": item["originType"] ?? "",
+                "isSample": item["originType"] === "Sample"
             }));
     
         const blob = new Blob([JSON.stringify(rows)], { type: "text/javascript", endings: "native" });
