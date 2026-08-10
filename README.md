@@ -3,12 +3,3 @@
 amazon.co.jp の Kindle 電子書籍と、ライブラリに登録したサンプル本の一覧を CSV / JSON でエクスポートするツールです。
 
 出力した CSV には `originType` と `sample` 列、JSON には `originType` と `isSample` を含めます。`sample: true` / `isSample: true` の行がサンプル本です。
-
-## Download
-
-* [Kindle bookshelf exporter - Chrome Web Store](https://chrome.google.com/webstore/detail/kindle-bookshelf-exporter/olimpmeljimffgjonlpmiaebaonnegdp?hl=ja)
-* [Kindle bookshelf exporter – Firefox ADD-ONS](https://addons.mozilla.org/ja/firefox/addon/kindle-bookshelf-exporter/)
-
-## Icon
-
-[Bookshelf - Free education icons](https://www.flaticon.com/free-icon/bookshelf_1703124)
